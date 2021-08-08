@@ -7,4 +7,7 @@
     <string name="noAlert">NO</string>
     <string name="permissionWarningMsg">You should allow the External Storage</string>
     <string name="permissionNeedMsg">We need External Storage Permission for Executing</string>
+
+    <!--Buttons-->
+    <string name="loadImageBtn">Load Image</string>
 </resources>

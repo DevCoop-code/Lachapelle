@@ -11,6 +11,7 @@ import android.content.DialogInterface;
 import android.content.pm.PackageManager;
 import android.os.Build;
 import android.os.Bundle;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -23,6 +24,9 @@ public class MainActivity extends AppCompatActivity implements ActivityCompat.On
     static final int PERMISSIONS_REQUEST_CODE = 1000;
     String[] PERMISSIONS = {"android.permission.READ_EXTERNAL_STORAGE"};
 
+    // JNI
+    public native void detectEdgeJNI(long inputImage, long outputImage, int th1, int th2);
+
     // Used to load the 'native-lib' library on application startup.
     static
     {
@@ -30,6 +34,9 @@ public class MainActivity extends AppCompatActivity implements ActivityCompat.On
     }
 
     private ActivityMainBinding binding;
+
+    private ImageView mImageView;
+    private ImageView mEdgeImageView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -47,9 +54,17 @@ public class MainActivity extends AppCompatActivity implements ActivityCompat.On
             }
         }
 
+        setUI();
+
         // Example of a call to a native method
-        TextView tv = binding.sampleText;
-        tv.setText(stringFromJNI());
+//        TextView tv = binding.sampleText;
+//        tv.setText(stringFromJNI());
+    }
+
+    private void setUI()
+    {
+        mImageView = binding.originIv;
+        mEdgeImageView = binding.edgeIv;
     }
 
     private boolean hasPermissions(String[] permissions)

@@ -16,4 +16,8 @@ Java_com_hankyo_jeong_lachapelle_MainActivity_detectEdgeJNI(JNIEnv *env, jobject
                                                             jlong input_image, jlong output_image,
                                                             jint th1, jint th2) {
     cv::Mat &inputMat = *(cv::Mat *)input_image;
+    cv::Mat &outputMat = *(cv::Mat *)output_image;
+
+    cv::cvtColor(inputMat, outputMat, cv::COLOR_RGB2GRAY);
+    cv::Canny(outputMat, outputMat, th1, th2);
 }
