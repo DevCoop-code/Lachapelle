@@ -1,2 +1,3 @@
 rootProject.name = "Lachapelle"
 include ':app'
+include ':opencv'

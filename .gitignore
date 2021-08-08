@@ -28,3 +28,6 @@ gen/
 
 # Local configuration file
 local.properties
+
+# OpenCV
+opencv/build
