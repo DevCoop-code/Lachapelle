@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">라차펠레</string>
+
+    <!--For Dialog-->
+    <string name="permissionAlertTitle">알림</string>
+    <string name="yesAlert">예</string>
+    <string name="noAlert">아니오</string>
+</resources>

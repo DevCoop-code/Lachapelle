@@ -1,15 +1,18 @@
 package com.hankyo.jeong.lachapelle;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 
 import android.annotation.TargetApi;
+import android.content.DialogInterface;
 import android.content.pm.PackageManager;
 import android.os.Build;
 import android.os.Bundle;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.hankyo.jeong.lachapelle.databinding.ActivityMainBinding;
 
@@ -85,7 +88,28 @@ public class MainActivity extends AppCompatActivity implements ActivityCompat.On
     @TargetApi(Build.VERSION_CODES.M)
     private void showDialogForPermission(String msg)
     {
+        String alertTitle = getResources().getString(R.string.permissionAlertTitle);
+        String alertYes = getResources().getString(R.string.yesAlert);
+        String alertNo = getResources().getString(R.string.noAlert);
 
+        AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
+        builder.setTitle(alertTitle);
+        builder.setMessage(msg);
+        builder.setCancelable(false);
+        builder.setPositiveButton(alertYes, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                requestPermissions(PERMISSIONS, PERMISSIONS_REQUEST_CODE);
+            }
+        });
+        builder.setNegativeButton(alertNo, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+//                Toast.makeText(this, )
+                finish();
+            }
+        });
+        builder.create().show();
     }
 
     /**

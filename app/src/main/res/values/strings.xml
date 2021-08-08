@@ -1,3 +1,8 @@
 <resources>
     <string name="app_name">Lachapelle</string>
+
+    <!--For Dialog-->
+    <string name="permissionAlertTitle">Alert</string>
+    <string name="yesAlert">YES</string>
+    <string name="noAlert">NO</string>
 </resources>
