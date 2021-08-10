@@ -10,4 +10,5 @@
 
     <!--Buttons-->
     <string name="loadImageBtn">Load Image</string>
+    <string name="startPhotoEditBtn">PhotoEdit</string>
 </resources>

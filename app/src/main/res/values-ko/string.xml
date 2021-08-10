@@ -11,4 +11,5 @@
 
     <!--Buttons-->
     <string name="loadImageBtn">이미지 불러오기</string>
+    <string name="startPhotoEditBtn">사진편집</string>
 </resources>
