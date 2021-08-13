@@ -11,5 +11,15 @@
             android:layout_height="match_parent"
             android:scaleType="centerCrop"
             android:src="@drawable/blackberries"/>
+        <TextView
+            android:id="@+id/appTitleTxt"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/app_name"
+            android:textSize="60dp"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:textColor="@color/white"
+            android:textStyle="bold"/>
     </FrameLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
