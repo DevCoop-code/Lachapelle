@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/start_main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="20dp">
+
+        <ImageButton
+            android:id="@+id/edit_photo_btn"
+            android:layout_width="match_parent"
+            android:layout_height="150dp"
+            android:src="#77000000"
+            android:background="@drawable/english_city"
+            android:adjustViewBounds="true"
+            android:scaleType="fitCenter"
+            android:onClick="startPhotoEdit"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="20dp"
+            android:padding="20dp"
+            android:layout_gravity="center_vertical"
+            android:gravity="right"
+            android:clickable="false"
+            android:text="@string/startPhotoEditBtn"
+            android:textSize="30dp"
+            android:textColor="@color/white"/>
+    </FrameLayout>
+</LinearLayout>
