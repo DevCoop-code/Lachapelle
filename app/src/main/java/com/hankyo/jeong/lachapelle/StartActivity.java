@@ -6,6 +6,8 @@ import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.database.Cursor;
+import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.provider.MediaStore;
@@ -59,9 +61,32 @@ public class StartActivity extends AppCompatActivity implements ActivityCompat.O
                         if (result.getResultCode() == Activity.RESULT_OK)
                         {
                             Log.d(TAG, "result ok");
+
+                            String photoImgPath = getImagePathFromURI(result.getData().getData());
+
+                            Intent mainIntent = new Intent(StartActivity.this, PhotoEditActivity.class);
+                            mainIntent.putExtra("photoResource", photoImgPath);
+                            startActivity(mainIntent);
                         }
                     }
                 });
+    }
+
+    private String getImagePathFromURI(Uri contentUri)
+    {
+        String[] proj = {MediaStore.Images.Media.DATA};
+        Cursor cursor = getContentResolver().query(contentUri, proj, null, null, null);
+        if (cursor == null)
+            return contentUri.getPath();
+        else
+        {
+            int idx = cursor.getColumnIndexOrThrow(MediaStore.Images.Media.DATA);
+            cursor.moveToFirst();
+            String imgPath = cursor.getString(idx);
+            cursor.close();
+
+            return imgPath;
+        }
     }
 
     @Override
