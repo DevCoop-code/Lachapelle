@@ -7,6 +7,9 @@ import android.os.Bundle;
 import android.widget.ImageView;
 
 import com.hankyo.jeong.lachapelle.databinding.PhotoeditMainBinding;
+import com.hankyo.jeong.lachapelle.view.PhotoEditView;
+
+import org.opencv.photo.Photo;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
@@ -17,12 +20,11 @@ public class PhotoEditActivity extends AppCompatActivity {
 
     private Bitmap mOriginImage;
 
+    private PhotoEditView photoEditView;
+
     @Override
     protected void onCreate(@Nullable @org.jetbrains.annotations.Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
-        binding = PhotoeditMainBinding.inflate(getLayoutInflater());
-        setContentView(binding.getRoot());
 
         Intent intent = getIntent();
         String imagePath = intent.getExtras().getString("photoResource");
@@ -31,7 +33,13 @@ public class PhotoEditActivity extends AppCompatActivity {
         options.inSampleSize = 4;
         mOriginImage = BitmapFactory.decodeFile(imagePath, options);
 
-        ImageView originView = binding.originImage;
-        originView.setImageBitmap(mOriginImage);
+        binding = PhotoeditMainBinding.inflate(getLayoutInflater());
+        photoEditView = binding.photoEditView;
+        photoEditView.startRenderingView(mOriginImage);
+
+        setContentView(binding.getRoot());
+
+//        PhotoEditView photoEditView = new PhotoEditView(this, mOriginImage);
+//        setContentView(photoEditView);
     }
 }
