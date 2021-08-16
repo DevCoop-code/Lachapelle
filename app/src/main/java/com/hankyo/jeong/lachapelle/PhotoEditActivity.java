@@ -40,7 +40,7 @@ public class PhotoEditActivity extends AppCompatActivity {
         layoutParm.width = mOriginImage.getWidth();
         layoutParm.height = mOriginImage.getHeight();
         photoEditView.setLayoutParams(layoutParm);
-        
+
         photoEditView.startRenderingView(mOriginImage);
 
         setContentView(binding.getRoot());
