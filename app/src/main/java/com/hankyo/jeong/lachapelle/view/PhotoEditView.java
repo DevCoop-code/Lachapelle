@@ -4,6 +4,10 @@ import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
+import android.graphics.Color;
+import android.graphics.Paint;
+import android.graphics.PorterDuff;
+import android.graphics.PorterDuffXfermode;
 import android.util.AttributeSet;
 import android.util.Log;
 import android.view.SurfaceHolder;
@@ -40,6 +44,8 @@ public class PhotoEditView extends SurfaceView implements SurfaceHolder.Callback
     @Override
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
+
+        Log.d(TAG, "onDraw Called");
     }
 
     @Override
@@ -92,7 +98,27 @@ public class PhotoEditView extends SurfaceView implements SurfaceHolder.Callback
                 canvas = mHolder.lockCanvas();
                 try {
                     synchronized (mHolder) {
-                        canvas.drawBitmap(imageOrigin, 0, 0, null);
+//                        canvas.drawColor(Color.CYAN);
+
+                        Canvas c = new Canvas();
+                        Bitmap result = Bitmap.createBitmap(imageOrigin.getWidth(), imageOrigin.getHeight(), Bitmap.Config.ARGB_8888);
+
+                        c.setBitmap(result);
+
+                        c.drawBitmap(imageOrigin, 0, 0, null);
+
+                        Paint paint = new Paint();
+                        paint.setFilterBitmap(false);
+                        paint.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.DST_OUT));
+
+                        Bitmap maskBitmap = BitmapFactory.decodeResource(getResources(), R.drawable.maskimage);
+                        Log.d(TAG, "maskBitmap Width: " + maskBitmap.getWidth() + ", Height: " + maskBitmap.getHeight());
+                        Bitmap resizedMaskBitmap = Bitmap.createScaledBitmap(maskBitmap, imageOrigin.getWidth(), imageOrigin.getHeight(), true);
+                        c.drawBitmap(resizedMaskBitmap, 0, 0, paint);
+
+                        paint.setXfermode(null);
+
+                        canvas.drawBitmap(result, 0, 0, null);
                     }
                 } finally {
                     if (canvas == null)
