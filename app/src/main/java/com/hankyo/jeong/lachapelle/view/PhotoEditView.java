@@ -71,6 +71,7 @@ public class PhotoEditView extends SurfaceView implements SurfaceHolder.Callback
     class RenderingThread extends Thread {
         Bitmap imageOrigin;
 
+        int targetBitmapWidth, targetBitmapHeight;
         public RenderingThread() {
             // For Test
             imageOrigin = BitmapFactory.decodeResource(mContext.getResources(), R.drawable.blackberries);
@@ -78,6 +79,11 @@ public class PhotoEditView extends SurfaceView implements SurfaceHolder.Callback
 
         public RenderingThread(Bitmap imageRes) {
             imageOrigin = imageRes;
+
+            targetBitmapWidth = imageRes.getWidth();
+            targetBitmapHeight = imageRes.getHeight();
+
+            Log.d(TAG, "width: " + targetBitmapWidth + ", height: " + targetBitmapHeight);
         }
 
         public void run() {

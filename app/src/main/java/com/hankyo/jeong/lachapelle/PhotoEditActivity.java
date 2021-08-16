@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
+import android.view.ViewGroup;
 import android.widget.ImageView;
 
 import com.hankyo.jeong.lachapelle.databinding.PhotoeditMainBinding;
@@ -35,11 +36,13 @@ public class PhotoEditActivity extends AppCompatActivity {
 
         binding = PhotoeditMainBinding.inflate(getLayoutInflater());
         photoEditView = binding.photoEditView;
+        ViewGroup.LayoutParams layoutParm = photoEditView.getLayoutParams();
+        layoutParm.width = mOriginImage.getWidth();
+        layoutParm.height = mOriginImage.getHeight();
+        photoEditView.setLayoutParams(layoutParm);
+        
         photoEditView.startRenderingView(mOriginImage);
 
         setContentView(binding.getRoot());
-
-//        PhotoEditView photoEditView = new PhotoEditView(this, mOriginImage);
-//        setContentView(photoEditView);
     }
 }
